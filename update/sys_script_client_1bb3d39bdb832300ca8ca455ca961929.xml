@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_script_client">
+    <sys_script_client action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <applies_extended>false</applies_extended>
+        <condition/>
+        <description>Only display What needed choices that match the Request type value</description>
+        <field>u_request_type</field>
+        <global>true</global>
+        <isolate_script>true</isolate_script>
+        <messages/>
+        <name>NeedIt Request Type Options</name>
+        <order/>
+        <script><![CDATA[function onChange(control, oldValue, newValue, isLoading, isTemplate) {
+	
+	
+	// If the newValue is "" then don't need to update the what needed options
+	// Typically part of data being loaded
+	if (newValue === '') {
+		return;
+	}
+	
+	// Retrieve existing what needed value before clearing the options list
+	var whatneeded = g_form.getValue('u_what_needed');
+	
+	//clear all choices from what needed field
+	g_form.clearOptions('u_what_needed');
+	
+	// Set up valid hr options
+	if(newValue == 'hr'){
+		g_form.addOption('u_what_needed', 'hr1', 'Human Resources 1');
+		g_form.addOption('u_what_needed', 'hr2', 'Human Resources 2');
+		g_form.addOption('u_what_needed', 'other', 'Other');
+	}
+	
+	// Set up valid facilities options
+	if(newValue == "facilities"){
+		g_form.addOption('u_what_needed', 'facilities1', 'Facilities 1');
+		g_form.addOption('u_what_needed', 'facilities2', 'Facilities 2');
+		g_form.addOption('u_what_needed', 'other', 'Other');
+	}
+	
+	//Set up valid legal options
+	if(newValue == 'legal'){
+		g_form.addOption('u_what_needed', 'legal1', 'Legal 1');
+		g_form.addOption('u_what_needed', 'legal2', 'Legal 2');
+		g_form.addOption('u_what_needed', 'other', 'Other');
+	}
+	
+	//Set up valid finance options
+	if(newValue == 'finance'){
+		g_form.addOption('u_what_needed', 'finance1', 'Finance 1');
+		g_form.addOption('u_what_needed', 'finance2', 'Finance 2');
+		g_form.addOption('u_what_needed', 'other', 'Other');
+	}
+	
+	// If the change is a result of the form loading and it is not a new record
+	// Then set the whatneeded field to its original value
+	if(isLoading && !g_form.isNewRecord()){
+		g_form.setValue('u_what_needed', whatneeded);
+	}
+	
+}]]></script>
+        <sys_class_name>sys_script_client</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2019-01-22 15:56:07</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>1bb3d39bdb832300ca8ca455ca961929</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>NeedIt Request Type Options</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="NeedIt" source="x_58872_needit">6ead8e780f603200cd674f8ce1050ed1</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="NeedIt">6ead8e780f603200cd674f8ce1050ed1</sys_scope>
+        <sys_update_name>sys_script_client_1bb3d39bdb832300ca8ca455ca961929</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2019-01-22 16:00:43</sys_updated_on>
+        <table>x_58872_needit_needit</table>
+        <type>onChange</type>
+        <ui_type>10</ui_type>
+        <view/>
+    </sys_script_client>
+</record_update>
